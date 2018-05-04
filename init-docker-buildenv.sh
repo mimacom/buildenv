@@ -61,6 +61,7 @@ function hash() {
 }
 
 function is_bambooagent() { hostname | egrep --quiet 'mima-bambooagent-[0-9]+.mimacom.local'; }
+function is_elasticagent() { test -d /opt/bamboo-elastic-agent/ }
 
 
 docker_base=`egrep "^[ \t]*FROM" docker/Dockerfile | awk '{ print $2 }'`
@@ -122,6 +123,18 @@ then
      -v ~bambooagent/.m2/:/home/user/.m2/ \
      -v ~bambooagent/.gradle/:/home/user/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
+
+elif is_elasticagent
+  # create directories if they do not exist
+  mkdir -p ~bamboo/.m2
+  mkdir -p ~bamboo/.gradle
+  docker run --privileged --rm -i \
+     -u 0 \
+     -v `pwd`:/build/ \
+     -v ~bamboo/.m2/:/root/.m2/ \
+     -v ~bamboo/.gradle/:/root/.gradle/ \
+     "${docker_image}" "/build/docker/start.sh"
+
 else
   user_host=`whoami`
   # create directories if they do not exist
