@@ -112,7 +112,7 @@ chmod +x ./docker/start.sh
 # run build inside container
 echo "init-docker-buildenv: starting job in a new docker container"
 
-if [ is_bambooagent ]
+if is_bambooagent
 then
   echo "buildenv log: bambooagent"
   # create directories if they do not exist
@@ -123,7 +123,7 @@ then
      -v `pwd`:/build/ \
      "${docker_image}" "/build/docker/start.sh"
 
-elif [ is_elasticagent ]
+elif is_elasticagent
 then
   echo "buildenv log: elasticagent"
   # create directories if they do not exist
