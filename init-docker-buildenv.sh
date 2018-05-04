@@ -120,15 +120,15 @@ then
   docker run --privileged --rm -i \
      -u 5000 \
      -v `pwd`:/build/ \
-     -v ~bambooagent/.m2/:/home/user/.m2/ \
-     -v ~bambooagent/.gradle/:/home/user/.gradle/ \
+     -v $(echo ~bambooagent)/.m2/:/home/user/.m2/ \
+     -v $(echo ~bambooagent)/.gradle/:/home/user/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
 
 elif [ is_elasticagent ]
 then
   # create directories if they do not exist
-  mkdir -p ~bamboo/.m2
-  mkdir -p ~bamboo/.gradle
+  mkdir -p $(echo ~bamboo)/.m2
+  mkdir -p $(echo ~bamboo)/.gradle
   docker run --privileged --rm -i \
      -u 0 \
      -v `pwd`:/build/ \
