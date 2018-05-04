@@ -125,6 +125,7 @@ then
      "${docker_image}" "/build/docker/start.sh"
 
 elif is_elasticagent
+then
   # create directories if they do not exist
   mkdir -p ~bamboo/.m2
   mkdir -p ~bamboo/.gradle
