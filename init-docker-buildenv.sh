@@ -127,13 +127,13 @@ then
 elif [ is_elasticagent ]
 then
   # create directories if they do not exist
-  mkdir -p $(echo ~bamboo)/.m2
-  mkdir -p $(echo ~bamboo)/.gradle
+  mkdir -p ~bamboo/.m2
+  mkdir -p ~bamboo/.gradle
   docker run --privileged --rm -i \
      -u 0 \
      -v `pwd`:/build/ \
-     -v ~bamboo/.m2/:/root/.m2/ \
-     -v ~bamboo/.gradle/:/root/.gradle/ \
+     -v $(echo ~bamboo)/.m2/:/root/.m2/ \
+     -v $(echo ~bamboo)/.gradle/:/root/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
 
 else
