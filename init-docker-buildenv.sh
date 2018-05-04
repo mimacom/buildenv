@@ -148,6 +148,8 @@ else
   docker run --privileged --rm -i \
      -u 5000 \
      -v `pwd`:/build/ \
+     -v ~/.m2/:/home/user/.m2/ \
+     -v ~/.gradle/:/home/user/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
   #sudo chown -R "${user_host}:${user_host}" ~/.m2
   rm ./docker/envvars.sh
