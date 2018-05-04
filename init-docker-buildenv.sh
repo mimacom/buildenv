@@ -61,7 +61,7 @@ function hash() {
 }
 
 function is_bambooagent() { hostname | egrep --quiet 'mima-bambooagent-[0-9]+.mimacom.local'; }
-function is_elasticagent() { test -d /opt/bamboo-elastic-agent/ }
+function is_elasticagent() { test -d /opt/bamboo-elastic-agent/; }
 
 
 docker_base=`egrep "^[ \t]*FROM" docker/Dockerfile | awk '{ print $2 }'`
