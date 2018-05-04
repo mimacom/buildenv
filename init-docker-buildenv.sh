@@ -120,8 +120,6 @@ then
   docker run --privileged --rm -i \
      -u 5000 \
      -v `pwd`:/build/ \
-     -v $(echo ~bambooagent)/.m2/:/home/user/.m2/ \
-     -v $(echo ~bambooagent)/.gradle/:/home/user/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
 
 elif [ is_elasticagent ]
@@ -132,8 +130,6 @@ then
   docker run --privileged --rm -i \
      -u 0 \
      -v `pwd`:/build/ \
-     -v $(echo ~bamboo)/.m2/:/root/.m2/ \
-     -v $(echo ~bamboo)/.gradle/:/root/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
 
 else
@@ -145,8 +141,6 @@ else
   docker run --privileged --rm -i \
      -u 5000 \
      -v `pwd`:/build/ \
-     -v ~/.m2/:/home/user/.m2/ \
-     -v ~/.gradle/:/home/user/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
   #sudo chown -R "${user_host}:${user_host}" ~/.m2
   rm ./docker/envvars.sh
