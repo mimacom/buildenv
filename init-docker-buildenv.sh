@@ -114,6 +114,7 @@ echo "init-docker-buildenv: starting job in a new docker container"
 
 if [ is_bambooagent ]
 then
+  echo "buildenv log: bambooagent"
   # create directories if they do not exist
   mkdir -p ~bambooagent/.m2
   mkdir -p ~bambooagent/.gradle
@@ -124,6 +125,7 @@ then
 
 elif [ is_elasticagent ]
 then
+  echo "buildenv log: elasticagent"
   # create directories if they do not exist
   mkdir -p ~bamboo/.m2
   mkdir -p ~bamboo/.gradle
@@ -133,6 +135,7 @@ then
      "${docker_image}" "/build/docker/start.sh"
 
 else
+  echo "buildenv log: dev notebook"
   user_host=`whoami`
   # create directories if they do not exist
   mkdir -p ~/.m2
