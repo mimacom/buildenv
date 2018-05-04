@@ -112,7 +112,7 @@ chmod +x ./docker/start.sh
 # run build inside container
 echo "init-docker-buildenv: starting job in a new docker container"
 
-if is_bambooagent
+if [ is_bambooagent ]
 then
   # create directories if they do not exist
   mkdir -p ~bambooagent/.m2
@@ -124,7 +124,7 @@ then
      -v ~bambooagent/.gradle/:/home/user/.gradle/ \
      "${docker_image}" "/build/docker/start.sh"
 
-elif is_elasticagent
+elif [ is_elasticagent ]
 then
   # create directories if they do not exist
   mkdir -p ~bamboo/.m2
